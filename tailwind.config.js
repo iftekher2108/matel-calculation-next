@@ -5,13 +5,34 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          
+"primary": "#0A5EB0",
+          
+"secondary": "#006A67",
+          
+"accent": "#cf0000",
+          
+"neutral": "#1A1A1D",
+          
+"base-100": "#2A3335",
+          
+"info": "#006cd0",
+          
+"success": "#347928",
+          
+"warning": "#e39c00",
+          
+"error": "#FF2929",
+          },
+        },
+      ],
     },
-  },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui')
+  ],
 };
