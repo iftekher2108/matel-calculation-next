@@ -118,9 +118,9 @@ export default function RootLayout({ children }) {
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
                   {/* <DataContext.Provider value={items}> */}
-                  <Suspense fallback={<Fallback/>}>
+                  {/* <Suspense fallback={<Fallback/>}> */}
                     {children}
-                  </Suspense>
+                  {/* </Suspense> */}
                   
                   {/* </DataContext.Provider>  */}
                 </div>
