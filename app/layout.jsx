@@ -3,8 +3,8 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import Panel from "@/components/panel";
-import Fallback from "@/components/fallback";
-import { useState, createContext,Suspense } from "react";
+// import Fallback from "@/components/fallback";
+import { useState} from "react";
 import Image from "next/image";
 
 // const geistSans = localFont({
