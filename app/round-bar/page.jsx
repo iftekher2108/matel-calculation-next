@@ -1,4 +1,4 @@
-import Fallback from "@/components/fallback"
+// import Fallback from "@/components/fallback"
 
 function roundBar() {
     return(
