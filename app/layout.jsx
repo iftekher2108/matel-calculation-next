@@ -3,7 +3,8 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import Panel from "@/components/panel";
-import { useState, createContext } from "react";
+import Fallback from "@/components/fallback";
+import { useState, createContext,Suspense } from "react";
 import Image from "next/image";
 
 // const geistSans = localFont({
@@ -117,7 +118,10 @@ export default function RootLayout({ children }) {
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
                   {/* <DataContext.Provider value={items}> */}
-                  {children}
+                  <Suspense fallback={<Fallback/>}>
+                    {children}
+                  </Suspense>
+                  
                   {/* </DataContext.Provider>  */}
                 </div>
               </div>

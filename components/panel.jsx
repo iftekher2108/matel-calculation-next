@@ -1,6 +1,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { memo } from "react"
 import { usePathname } from "next/navigation"
 function Panel({items}) {
     const route = usePathname()
@@ -27,4 +28,4 @@ function Panel({items}) {
     )
 }
 
-export default Panel
+export default memo(Panel)

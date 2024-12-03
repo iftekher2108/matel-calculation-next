@@ -1,7 +1,7 @@
 'use client'
-import { useState,useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 
-function MetalType() {
+function MetalType({ density}) {
 
     // const types =[
     //     {
@@ -51,39 +51,83 @@ function MetalType() {
     //     }
     // ]
 
-    const [data,setData] = useState(null)
-    const [selectData,setSelectData] = useState()
+    const [data, setData] = useState()
 
+
+    // model form fields
+    // const [name, setName] = useState('')
+    // const [density, setDensity] = useState('')
+
+ 
     useEffect(() => {
-        fetch('/metaltype.json')
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data)
-            // setLoading(false)
-          })
-      },[])
+       fetch('/metaltype.json')
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data)
+                // setLoading(false)
+            })
+    }, [])
 
     return (
         <>
-        <div>
+            {/* {(selectData !== null && Number(selectData)) ? <p>{selectData} gram/cm<sup>3</sup></p> : ''} */}
+            <div className="grid grid-cols-4 justify-center">
+                <div className="form-control col-span-3 me-2">
+                    <div className="flex ">
+                        <span className="me-2">Matel Type</span>
+                        <select onChange={(e) => density(e.target.value)} className="select select-primary select-bordered focus:ring-0 focus:outline-none w-full max-w-xs">
+                            <option value="">select Type</option>
+                            {(!data) ? <option>No data</option> : data.map((data) => (
+                                <option key={data.id} value={data.density} >{data.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
 
-        </div>
-            <div className="form-control">
-                <label htmlFor="" className="label">
-                Matel Type
-                </label>
-                <select onChange={(e)=> setSelectData(e.target.value)} className="select select-bordered w-full max-w-xs">
-                    {(!data) ? <option>No profile data</option> : data.map((data)=>(
-                     <option key={data.id} value={data.density} >{data.name}</option>   
-                    ))}
-                    
-                </select>
+                <div>
+                    <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>+</button>
+                    <dialog id="my_modal_5" className="modal modal-middle">
+                        <div className="modal-box">
+                            <form method="dialog">
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                {/* if there is a button in form, it will close the modal */}
+                                {/* <button className="btn">Close</button> */}
+                            </form>
+                            <h2 className="font-bold text-xl">Metal Type</h2>
+                            <div className="p-4">
+                                <div className="form-control mb-3">
+                                    <label htmlFor="name" className="label">
+                                        Name
+                                    </label>
+                                    <input type="text" id="name" className="input input-primary focus:outline-none border-1 focus:ring-0 input-md" required placeholder="Name" />
+                                </div>
+
+                                <div className="form-control mb-3">
+                                    <label htmlFor="" className="label">Density</label>
+                                    <div className="grid grid-cols-5 justify-center items-center">
+                                        <input type="number" className="input input-md input-primary focus:outline-none rounded-s-lg border-1 focus:ring-0  rounded-none col-span-4" required placeholder="0.00" />
+                                        <span className="border border-1 border-primary p-3 rounded-e-lg focus:border-1">gr/cm<sup>3</sup></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="modal-action justify-between">
+                                <button className="btn btn-primary">Submit</button>
+                                <form method="dialog">
+                                    <button className="btn">Close</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </dialog>
+                </div>
             </div>
         </>
     )
 }
 
-export default MetalType
+export default memo(MetalType) 
 
 
 

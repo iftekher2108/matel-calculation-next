@@ -1,12 +1,12 @@
 
-function TextInput(props) {
+function TextInput({type,id,placeholder,label,className,onChange}) {
     return (
         <>
             <div className="form-control">
-                <label htmlFor={props.id} className="label">
-                   {props.label}
+                <label htmlFor={id} className="label">
+                   {label}
                 </label>
-                <input type={props.type} id={props.id} className="input input-primary focus:border-0 input-md" placeholder={props.placeholder} />
+                <input onChange={onChange} type={type} id={id} className={"input input-primary focus:border-0 input-md " + className} placeholder={placeholder} />
             </div>
         </>
     )
