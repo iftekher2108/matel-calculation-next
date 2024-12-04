@@ -15,7 +15,7 @@ function RoundBar() {
 
     // from data
 
-    // width
+    // diaMeter
     const [diaMeter, setDiaMeter] = useState(0)
     const [diaType, setDiaType] = useState('mm')
 
@@ -118,7 +118,6 @@ function RoundBar() {
         else {
             alert('Please select a valid calculation type (length or weight).');
         }
-
 
     }
 
@@ -288,4 +287,4 @@ function RoundBar() {
         </>
     )
 }
-export default RoundBar
+export default memo(RoundBar)
