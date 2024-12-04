@@ -238,7 +238,7 @@ function Hexagon() {
 
                             <div className="form-control">
                                 <label htmlFor='prices' className="label">
-                                    Price:
+                                   Kg Price:
                                 </label>
                                 <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} value={kgPrice} required type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                     placeholder='0' />
