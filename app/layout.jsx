@@ -3,7 +3,6 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import Panel from "@/components/panel";
-import Fallback from "@/components/fallback";
 import { useState,Suspense} from "react";
 // import Image from "next/image";
 
@@ -113,9 +112,7 @@ export default function RootLayout({ children }) {
 
             <div className="lg:grid grid-cols-5 gap-2 p-2 py-4">
               <div>
-                <Suspense fallback={<Fallback/>}>
                 <Panel items={items} />
-                </Suspense>
               </div>
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
