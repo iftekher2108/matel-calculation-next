@@ -31,7 +31,7 @@ function Hexagon() {
     const [pieces, setPieces] = useState(1); // default pieces
     const [kgPrice, setKgPrice] = useState(1); // default price per kg
 
-    
+
     const resetField = () => {
         setWidth(0)
         setWidthType('mm')
@@ -40,7 +40,7 @@ function Hexagon() {
         setPieces(1)
         setWeight(1)
         setKgPrice(1)
-        
+
     }
 
 
@@ -48,71 +48,78 @@ function Hexagon() {
     const [weightInKg, setWeightInKg] = useState(0.00)
     const [totalWeight, setTotalWeight] = useState(0.00)
     const [totalInPrice, setTotalInPrice] = useState(0.00)
+
     const [resultInLength, setResultInLength] = useState(0.00)
-    const [totalLength,setTotalLength] = useState(0.00)
+    const [totalLength, setTotalLength] = useState(0.00)
 
 
     const calculateResults = () => {
 
-        // if (!width || !length || !pieces || !kgPrice || pieces <= 0 || kgPrice <= 0) {
-        //     setWeightInKg(0.00);
-        //     setTotalWeight(0.00);
-        //     setTotalInPrice(0.00);
-        //     return;
-        // }
+        if (
+            !width || !pieces || width <= 0 || pieces <= 0 ||
+            (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
+            (resultType === 'weight' && (!weight || weight <= 0))
+        ) {
+            alert('Please enter valid input values.');
+            // Reset results if inputs are invalid
+            setWeightInKg(0.00);
+            setTotalWeight(0.00);
+            setTotalInPrice(0.00);
+            setResultInLength(0.00);
+            setTotalLength(0.00);
+            return;
+        }
 
 
-        // Convert width and length based on their types
+        // Convert width to cm based on its type
         const widthInCm =
             widthType === 'mm' ? width / 10 :
                 widthType === 'cm' ? width :
                     widthType === 'in' ? width * 2.54 :
                         widthType === 'ft' ? width * 30.48 : 0;
 
+        // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
-            lengthType === 'mm' ? length / 10 :
+            resultType === 'length' &&
+            (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0;
+                        lengthType === 'ft' ? length * 30.48 : 0);
 
 
-        // Calculate area, volume, and results           
-        const area = (resultType === 'length') ? widthInCm * lengthInCm // Area in cm²
-            : (resultType === 'weight') ? 0 : '';
+                        
 
+        // Calculate side length of the hexagon
+        const sideLength = widthInCm / Math.sqrt(3);
+        // Calculate cross-sectional area of the hexagon
+        const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
 
+        if (resultType === 'length') {
+            // When calculating by length
 
-        if (width > 0 && pieces > 0 && kgPrice > 0) {
+            const area = hexagonArea * lengthInCm; // Area in cm²
+            const volume = area * density; // Volume in grams
+            const weightKg = volume / 1000; // Weight in kg
+            const totalWeight = weightKg * pieces; // Total weight for all pieces
+            const totalPrice = totalWeight * kgPrice; // Total price for all pieces
 
-            if (resultType === 'length' && length > 0) {
-                const volume = area * density; // Volume in grams
-                const weightKg = (volume / 1000); // Weight in kg
-                const totalWeight = weightKg * pieces // total weight
-                const totalPrice = weightKg * kgPrice; // Total price
+            setWeightInKg(weightKg.toFixed(2));
+            setTotalWeight(totalWeight.toFixed(2));
+            setTotalInPrice(totalPrice.toFixed(2));
+        }
+        else if (resultType === 'weight') {
+            // When calculating by weight
+            const weightInGrams = weight * 1000; // Convert kg to grams
+            const calculatedLength = weightInGrams / (density * hexagonArea) // Length in meters
+            const totalCalculatedLength = calculatedLength * pieces; // Total length in meters for all pieces
 
-                setWeightInKg(weightKg.toFixed(2));
-                setTotalWeight(totalWeight.toFixed(2)); // Total weight equals weight * pieces
-                setTotalInPrice(totalPrice.toFixed(2));
-            }
-            else if (resultType === 'weight' && weight > 0) {
-
-                const widthInMeters = width / 100; // Convert cm to meters
-                const weightInGrams = weight * 1000; // Convert kg to grams
-                const calculatedLength = weightInGrams / (density * widthInMeters); //length in meters
-                const totalCalculatedLength = calculatedLength * pieces; // total length in meters
-                const calculatedPrice = totalCalculatedLength * kgPrice; // total price in per meters
-                setResultInLength(calculatedLength)
-                setTotalLength(totalCalculatedLength)
-                setTotalInPrice(calculatedPrice)
-
-            }
-            else {
-                alert('Please enter valid type value')
-            }
+            setResultInLength((calculatedLength / 100).toFixed(2));
+            setTotalLength((totalCalculatedLength/ 100).toFixed(2));
         }
         else {
-            alert('Please enter valid value')
+            alert('Please select a valid calculation type (length or weight).');
         }
+
 
     }
 
@@ -227,6 +234,7 @@ function Hexagon() {
                                 placeholder='0' />
                         </div>
 
+                        {resultType === 'length' &&
 
                             <div className="form-control">
                                 <label htmlFor='prices' className="label">
@@ -235,9 +243,9 @@ function Hexagon() {
                                 <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} value={kgPrice} required type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                     placeholder='0' />
                             </div>
+                        }
 
                     </div>
-
 
                     {/* <div className="form-control">
                         <label htmlFor="" className="label">
@@ -259,16 +267,17 @@ function Hexagon() {
                         <>
                             <p>Single Weight: {weightInKg} kg</p>
                             <p>Total Weight: {totalWeight} kg</p>
+                            <p>Total Price: {totalInPrice} Taka</p>
                         </>
                     }
 
-                    {resultType === 'weight' && 
-                    <>
-                    <p>Single Length: {resultInLength} Meters</p>
-                    <p>Total Length: {totalLength} kg</p>
-                    </>
+                    {resultType === 'weight' &&
+                        <>
+                            <p>Single Length: {resultInLength} Meter</p>
+                            <p>Total Length: {totalLength} Meter</p>
+                        </>
                     }
-                    <p>Total Price: {totalInPrice} Taka</p>
+
                 </div>
 
             </div>
