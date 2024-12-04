@@ -4,7 +4,7 @@ import MetalType from "@/components/MetalType"
 import { memo, useState } from "react";
 function Hexagon() {
 
-    const [density, setDensity] = useState(0.00)
+    const [density, setDensity] = useState(7.85)
 
     const handleData = (data) => {
         setDensity(data);
@@ -21,7 +21,7 @@ function Hexagon() {
 
     // length
     const [length, setLength] = useState(0)
-    const [lengthType, setLengthType] = useState()
+    const [lengthType, setLengthType] = useState('mm')
 
     // weight 
     const [weight, setWeight] = useState(0)
@@ -31,20 +31,36 @@ function Hexagon() {
     const [pieces, setPieces] = useState(1); // default pieces
     const [kgPrice, setKgPrice] = useState(1); // default price per kg
 
+    
+    const resetField = () => {
+        setWidth(0)
+        setWidthType('mm')
+        setLength(0)
+        setLengthType('mm')
+        setPieces(1)
+        setWeight(1)
+        setKgPrice(1)
+        
+    }
+
 
     // result 
     const [weightInKg, setWeightInKg] = useState(0.00)
     const [totalWeight, setTotalWeight] = useState(0.00)
     const [totalInPrice, setTotalInPrice] = useState(0.00)
+    const [resultInLength, setResultInLength] = useState(0.00)
+    const [totalLength,setTotalLength] = useState(0.00)
+
 
     const calculateResults = () => {
 
-        if (!width || !length || !pieces || !kgPrice || pieces <= 0 || kgPrice <= 0) {
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            return;
-        }
+        // if (!width || !length || !pieces || !kgPrice || pieces <= 0 || kgPrice <= 0) {
+        //     setWeightInKg(0.00);
+        //     setTotalWeight(0.00);
+        //     setTotalInPrice(0.00);
+        //     return;
+        // }
+
 
         // Convert width and length based on their types
         const widthInCm =
@@ -60,27 +76,45 @@ function Hexagon() {
                         lengthType === 'ft' ? length * 30.48 : 0;
 
 
-        // If conversion results in 0, reset results
-        if (!widthInCm || !lengthInCm) {
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            return;
+        // Calculate area, volume, and results           
+        const area = (resultType === 'length') ? widthInCm * lengthInCm // Area in cm²
+            : (resultType === 'weight') ? 0 : '';
+
+
+
+        if (width > 0 && pieces > 0 && kgPrice > 0) {
+
+            if (resultType === 'length' && length > 0) {
+                const volume = area * density; // Volume in grams
+                const weightKg = (volume / 1000); // Weight in kg
+                const totalWeight = weightKg * pieces // total weight
+                const totalPrice = weightKg * kgPrice; // Total price
+
+                setWeightInKg(weightKg.toFixed(2));
+                setTotalWeight(totalWeight.toFixed(2)); // Total weight equals weight * pieces
+                setTotalInPrice(totalPrice.toFixed(2));
+            }
+            else if (resultType === 'weight' && weight > 0) {
+
+                const widthInMeters = width / 100; // Convert cm to meters
+                const weightInGrams = weight * 1000; // Convert kg to grams
+                const calculatedLength = weightInGrams / (density * widthInMeters); //length in meters
+                const totalCalculatedLength = calculatedLength * pieces; // total length in meters
+                const calculatedPrice = totalCalculatedLength * kgPrice; // total price in per meters
+                setResultInLength(calculatedLength)
+                setTotalLength(totalCalculatedLength)
+                setTotalInPrice(calculatedPrice)
+
+            }
+            else {
+                alert('Please enter valid type value')
+            }
+        }
+        else {
+            alert('Please enter valid value')
         }
 
-        // Calculate area, volume, and results
-        const area = widthInCm * lengthInCm; // Area in cm²
-        const volume = area * density; // Volume in grams
-        const weightKg = (volume / 1000) * pieces; // Weight in kg
-        const totalPrice = weightKg * kgPrice; // Total price
-
-        setWeightInKg(weightKg.toFixed(2));
-        setTotalWeight((weightKg * pieces).toFixed(2)); // Total weight equals weight * pieces
-        setTotalInPrice(totalPrice.toFixed(2));
-
     }
-
-
 
 
     return (
@@ -105,7 +139,7 @@ function Hexagon() {
             </div>
 
             <div className="flex justify-end p-5 px-20">
-                <p>Density: {(density == '' || density == null) ? '0.00' : density} gr/cm<sup>3</sup></p>
+                <p>Density: {density} gr/cm<sup>3</sup></p>
             </div>
 
             <div className="lg:grid grid-cols-2 gap-3">
@@ -121,7 +155,7 @@ function Hexagon() {
                                 Width (A):
                             </label>
                             <div className="grid grid-cols-8">
-                                <input onChange={(e) => setWidth(parseFloat(e.target.value) || 0)} type='number' required id='width'
+                                <input onChange={(e) => setWidth(parseFloat(e.target.value) || 0)} value={width} type='number' required id='width'
                                     className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
                                     placeholder='0.00' />
 
@@ -130,7 +164,6 @@ function Hexagon() {
                                  border-accent focus:ring-0 focus:outline-none select-md rounded-none" required
                                     onChange={(e) => setWidthType(e.target.value)}
                                 >
-                                    <option>select</option>
                                     <option value="mm">mm</option>
                                     <option value="cm">cm</option>
                                     <option value="in">in</option>
@@ -146,7 +179,7 @@ function Hexagon() {
                                     Weight:
                                 </label>
                                 <div className="grid grid-cols-8">
-                                    <input onChange={(e) => setWeight(parseFloat(e.target.value) || 0)} type='number' id='weight'
+                                    <input onChange={(e) => setWeight(parseFloat(e.target.value) || 0)} value={weight} type='number' id='weight'
                                         className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
                                         placeholder='0.00' required />
                                     <span className="border border-1 col-span-2 border-accent focus:border-primary p-3 bg-base-100 rounded-e-lg focus:border-1">
@@ -154,7 +187,7 @@ function Hexagon() {
                                     </span>
                                     {/* <select onChange={(e) => setWeightType(e.target.value)} 
                                     className="select rounded-e-lg col-span-2 select-primary border-accent focus:ring-0 focus:outline-none select-md rounded-none">
-                                        <option>select</option>
+
                                         <option value="">mm</option>
                                         <option value="">cm</option>
                                         <option value="">in</option>
@@ -172,11 +205,10 @@ function Hexagon() {
                                     Length:
                                 </label>
                                 <div className="grid grid-cols-8">
-                                    <input onChange={(e) => setLength(parseFloat(e.target.value) || 0)} required type='number' id='length' className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
+                                    <input onChange={(e) => setLength(parseFloat(e.target.value) || 0)} value={length} required type='number' id='length' className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
                                         placeholder='0.00' />
                                     <select onChange={(e) => setLengthType(e.target.value)}
                                         className="select rounded-e-lg col-span-2 select-primary border-accent focus:ring-0 focus:outline-none select-md rounded-none" required >
-                                        <option>select</option>
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="in">in</option>
@@ -191,20 +223,18 @@ function Hexagon() {
                             <label htmlFor='pieces' className="label">
                                 Pieces:
                             </label>
-                            <input onChange={(e) => setPieces(parseInt(e.target.value) || 0)} required type='number' id='pieces' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
+                            <input onChange={(e) => setPieces(parseInt(e.target.value) || 0)} value={pieces} required type='number' id='pieces' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                 placeholder='0' />
                         </div>
 
-                        {resultType === 'length' &&
+
                             <div className="form-control">
                                 <label htmlFor='prices' className="label">
-                                    KG Price:
+                                    Price:
                                 </label>
-                                <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} required type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
+                                <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} value={kgPrice} required type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                     placeholder='0' />
                             </div>
-                        }
-
 
                     </div>
 
@@ -216,7 +246,8 @@ function Hexagon() {
                         <input type="text" className="input input-primary input-md" placeholder="" />
                     </div> */}
 
-                    <div className="flex lg:justify-end justify-center mt-3">
+                    <div className="flex lg:justify-between justify-center mt-3">
+                        <button onClick={() => resetField()} className="btn btn-error text-white">Clear</button>
                         <button onClick={() => calculateResults()} className="btn btn-primary">Calculate</button>
                     </div>
 
@@ -224,8 +255,19 @@ function Hexagon() {
 
                 <div className="p-5 bg-base-100 rounded-lg">
                     results
-                    <p>Single Weight: {weightInKg} kg</p>
-                    <p>Total Weight: {totalWeight} kg</p>
+                    {resultType === 'length' &&
+                        <>
+                            <p>Single Weight: {weightInKg} kg</p>
+                            <p>Total Weight: {totalWeight} kg</p>
+                        </>
+                    }
+
+                    {resultType === 'weight' && 
+                    <>
+                    <p>Single Length: {resultInLength} Meters</p>
+                    <p>Total Length: {totalLength} kg</p>
+                    </>
+                    }
                     <p>Total Price: {totalInPrice} Taka</p>
                 </div>
 

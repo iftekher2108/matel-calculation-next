@@ -76,7 +76,6 @@ function MetalType({ density}) {
                     <div className="flex ">
                         <span className="me-2">Matel Type</span>
                         <select onChange={(e) => density(e.target.value)} className="select select-primary select-bordered focus:ring-0 focus:outline-none w-full max-w-xs">
-                            <option value="">select Type</option>
                             {(!data) ? <option>No data</option> : data.map((data) => (
                                 <option key={data.id} value={data.density} >{data.name}</option>
                             ))}

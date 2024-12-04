@@ -49,8 +49,6 @@ function Fallback() {
 
                     </div>
 
-
-
                     <div className="flex lg:justify-end justify-center mt-3">
                     </div>
 
