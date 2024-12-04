@@ -12,8 +12,6 @@ function RoundTube() {
     // result type 
     const [resultType, setResultType] = useState('length')
 
-    // from data
-
     // DiaMeter
     const [diaMeter, setDiaMeter] = useState(0)
     const [diaType, setDiaType] = useState('mm')
@@ -30,7 +28,6 @@ function RoundTube() {
     const [weight, setWeight] = useState(0)
     // const [weightType, setWeightType] = useState()
 
-
     const [pieces, setPieces] = useState(1); // default pieces
     const [kgPrice, setKgPrice] = useState(1); // default price per kg
 
@@ -46,18 +43,14 @@ function RoundTube() {
 
     }
 
-
     // result 
     const [weightInKg, setWeightInKg] = useState(0.00)
     const [totalWeight, setTotalWeight] = useState(0.00)
     const [totalInPrice, setTotalInPrice] = useState(0.00)
-
     const [resultInLength, setResultInLength] = useState(0.00)
     const [totalLength, setTotalLength] = useState(0.00)
 
-
     const calculateResults = () => {
-
         if (
             !diaMeter || !pieces || diaMeter <= 0 || pieces <= 0 || !thickness || thickness <= 0 ||
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
@@ -72,7 +65,6 @@ function RoundTube() {
             setTotalLength(0.00);
             return;
         }
-
 
         // Convert width to cm based on its type
         const DiaInCm =
@@ -99,7 +91,6 @@ function RoundTube() {
         // const sideLength = widthInCm / Math.sqrt(3);
         // // Calculate cross-sectional area of the hexagon
         // const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
-
 
         if (resultType === 'length') {
             // When calculating by length
@@ -128,9 +119,7 @@ function RoundTube() {
         else {
             alert('Please select a valid calculation type (length or weight).');
         }
-
     }
-
 
     return (
         <>
@@ -303,13 +292,9 @@ function RoundTube() {
                             <p>Total Length: {totalLength} Meter</p>
                         </>
                     }
-
                 </div>
-
             </div>
-
             <div>
-                {/* <Fallback /> */}
             </div>
 
         </>
