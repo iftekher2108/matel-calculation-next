@@ -3,7 +3,8 @@
 import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css"
 import Panel from "@/components/panel";
-import { useState,Suspense} from "react";
+import Image from "next/image";
+import { useState} from "react";
 // import Image from "next/image";
 
 // const geistSans = localFont({
@@ -104,11 +105,39 @@ export default function RootLayout({ children }) {
           <div className="flex bg-primary justify-between p-4 sticky top-0 z-50">
             {/* <Image src={} height={40} width={40} alt="logo" /> */}
             <div>
-             <p className="text-lg text-white font-semibold">Iftekher mahmud pervez</p> 
+              <p className="text-lg text-white font-semibold">Iftekher mahmud pervez</p>
             </div>
+            <div>
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer-4" className="drawer-button btn btn-neutral">About</label>
+              </div>
+            </div>
+            
           </div>
 
           <main>
+
+          <div className="drawer drawer-end z-50">
+              <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-side">
+                <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                  {/* Sidebar content here */}
+
+                <div className="flex flex-col justify-center items-center p-2 gap-2">
+                    <Image src={'/image/avatar.jpg'} className="rounded-full" height={100} width={100} alt="Creator Avatar" />
+                  
+                  <div>
+                    <h3 className="text-lg uppercase font-bold">Iftekher Mahmud Pervez</h3>
+                  </div>
+
+                </div>
+
+                  
+                </ul>
+              </div>
+            </div>
 
             <div className="lg:grid grid-cols-5 gap-2 p-2 py-4">
               <div>
@@ -116,8 +145,8 @@ export default function RootLayout({ children }) {
               </div>
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
-                  {/* <DataContext.Provider value={items}> */}        
-                    {children}
+                  {/* <DataContext.Provider value={items}> */}
+                  {children}
                   {/* </DataContext.Provider>  */}
                 </div>
               </div>
