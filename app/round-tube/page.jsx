@@ -35,6 +35,8 @@ function RoundTube() {
     const resetField = () => {
         setDiaMeter(0)
         setDiaType('mm')
+        setThickness(0)
+        setThickType('mm')
         setLength(0)
         setLengthType('mm')
         setPieces(1)

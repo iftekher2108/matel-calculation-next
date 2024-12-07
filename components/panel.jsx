@@ -15,10 +15,10 @@ function Panel({items}) {
             </div>
             <div>
                 <ul className="menu rounded-lg bg-base-200 min-h-screen">
-                    <li className={'mb-2 ' + (route === '/' ? 'active' : '')}><Link href={'/'}>Home</Link></li>
+                    <li className={'mb-2 ' + (route === '/' ? 'active' : '')}><Link className="text-white" href={'/'}>Home</Link></li>
                     {
                     items.map((item)=>(
-                     <li key={item.id} className={'mb-2 '+ (route === item.link ? 'active' :'')}><Link href={item.link}>{item.name}</Link></li>   
+                     <li key={item.id} className={'mb-2 '+ (route === item.link ? 'active' :'')}><Link className="text-white" href={item.link}>{item.name}</Link></li>   
                     ))
                     }
                 </ul>
