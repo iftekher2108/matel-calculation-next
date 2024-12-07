@@ -271,7 +271,7 @@ function RoundTube() {
                         <input type="text" className="input input-primary input-md" placeholder="" />
                     </div> */}
 
-                    <div className="flex lg:justify-between justify-center mt-3">
+                    <div className="flex lg:justify-between justify-center my-3">
                         <button onClick={() => resetField()} className="btn btn-error text-white">Clear</button>
                         <button onClick={() => calculateResults()} className="btn btn-primary">Calculate</button>
                     </div>

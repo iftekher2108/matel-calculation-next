@@ -21,6 +21,10 @@ function SquareTube() {
     const [sideBType, setSideBType] = useState('mm')
 
 
+    // thickness 
+    const [thickness, setThickness] = useState(0)
+    const [thickType, setThickType] = useState('mm')
+
 
     // length
     const [length, setLength] = useState(0)
@@ -35,8 +39,12 @@ function SquareTube() {
 
 
     const resetField = () => {
-        setSide(0)
-        setSideType('mm')
+        setSideA(0)
+        setSideAType('mm')
+        setSideB(0)
+        setSideBType('mm')
+        setThickness(0)
+        setThickType('mm')
         setLength(0)
         setLengthType('mm')
         setPieces(1)
@@ -54,7 +62,7 @@ function SquareTube() {
 
     const calculateResults = () => {
         if (
-            !side || !pieces || side <= 0 || pieces <= 0 ||
+            !sideA || !sideB || !pieces || !thickness || sideA <= 0 || sideB <= 0 || pieces <= 0 || thickness <= 0 ||
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
@@ -69,11 +77,17 @@ function SquareTube() {
         }
 
         // Convert width to cm based on its type
-        const sideInCm =
-            sideType === 'mm' ? side / 10 :
-                sideType === 'cm' ? side :
-                    sideType === 'in' ? side * 2.54 :
-                        sideType === 'ft' ? side * 30.48 : 0;
+        const sideAInCm =
+            sideAType === 'mm' ? sideA / 10 :
+                sideAType === 'cm' ? sideA :
+                    sideAType === 'in' ? sideA * 2.54 :
+                        sideAType === 'ft' ? sideA * 30.48 : 0;
+
+        const sideBInCm =
+            sideBType === 'mm' ? sideB / 10 :
+                sideBType === 'cm' ? sideB :
+                    sideBType === 'in' ? sideB * 2.54 :
+                        sideBType === 'ft' ? sideB * 30.48 : 0;
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -82,6 +96,12 @@ function SquareTube() {
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
                         lengthType === 'ft' ? length * 30.48 : 0);
+
+        const thicknessInCm =
+            (thickType === 'mm' ? thickness / 10 :
+                thickType === 'cm' ? thickness :
+                    thickType === 'in' ? thickness * 2.54 :
+                        thickType === 'ft' ? thickness * 30.48 : 0);
 
 
         // Calculate side length of the hexagon
@@ -92,24 +112,42 @@ function SquareTube() {
         if (resultType === 'length') {
             // When calculating by length
 
-            // Calculate the weight of one piece
-            const weightKg = (sideInCm ** 2 * lengthInCm * density) / 1000;
-            const totalWeight = weightKg * pieces; // Total weight for all pieces
-            const totalPrice = totalWeight * kgPrice; // Total price for all prices
+            const outerArea = sideAInCm * sideBInCm;
+            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm);
+
+            // Volume in cm³
+            const volume = (outerArea - innerArea) * lengthInCm;
+
+            // Weight in kg
+            const weightKg = (density * volume) / 1000;
+
+            // Total Weight
+            const totalWeight = weightKg * pieces;
+
+            // Total Price
+            const totalPrice = totalWeight * kgPrice;
+
             setWeightInKg(weightKg.toFixed(2));
             setTotalWeight(totalWeight.toFixed(2));
             setTotalInPrice(totalPrice.toFixed(2));
+
         }
         else if (resultType === 'weight') {
 
-            // Calculate length in cm
-            const length = (weight * 1000) / (side ** 2 * density);
-            // Convert length to meters
-            const lengthInMeters = length / 100;
-            // Total length in meters
-            const totalLength = lengthInMeters * pieces;
-            setResultInLength((lengthInMeters).toFixed(2));
-            setTotalLength((totalLength).toFixed(2));
+            const outerArea = sideAInCm * sideBInCm; // Outer cross-sectional area
+            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm); // Inner hollow area
+          
+            // Cross-sectional area
+            const crossSectionalArea = outerArea - innerArea;
+          
+            // Length of tube per kg
+            const lengthPerKg = weight / (density * crossSectionalArea / 1000);
+          
+            
+
+            setResultInLength((lengthPerKg / 100).toFixed(2));
+            setTotalLength(((lengthPerKg * pieces) / 100).toFixed(2));
+
 
         }
         else {
@@ -196,7 +234,7 @@ function SquareTube() {
                             </div>
                         </div>
 
-                        {/* <div className="form-control">
+                        <div className="form-control">
                             <label htmlFor='thickness' className="label">
                                 Thickness:
                             </label>
@@ -212,7 +250,7 @@ function SquareTube() {
                                     <option value="ft">ft</option>
                                 </select>
                             </div>
-                        </div> */}
+                        </div>
 
                         {resultType === 'weight' &&
                             <div className="form-control">
