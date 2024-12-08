@@ -123,7 +123,7 @@ export default function RootLayout({ children }) {
   //  const DataContext = createContext()
 
   return (
-    <html lang="en" data-theme={theme}>
+    <html lang="en" data-theme={`${theme}`}>
       <body>
         <div className="min-h-screen bg-base-100">
 
