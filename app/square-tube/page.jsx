@@ -158,7 +158,7 @@ function SquareTube() {
     return (
         <>
             <div>
-                <h3 className="text-3xl">Square Tube</h3>
+                <h3 className="text-3xl text-white">Square Tube</h3>
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
@@ -176,7 +176,7 @@ function SquareTube() {
                 </div>
             </div>
 
-            <div className="flex justify-end p-5 px-20">
+            <div className="flex text-white justify-end p-5 px-20">
                 <p>Density: {density} gr/cm<sup>3</sup></p>
             </div>
 

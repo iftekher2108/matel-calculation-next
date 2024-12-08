@@ -55,6 +55,7 @@ function MetalType({ density}) {
 
 
     // model form fields
+    // const [id,setId] = useState('')
     // const [name, setName] = useState('')
     // const [density, setDensity] = useState('')
 
@@ -84,16 +85,24 @@ function MetalType({ density}) {
                 </div>
 
                 <div>
-                    <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>+</button>
-                    <dialog id="my_modal_5" className="modal modal-middle">
+                    <button className="btn"
+                    //  onClick={() => document.getElementById('my_modal_5').showModal()}
+                     >gr/cm<sup>3</sup></button>
+                    {/* <dialog id="my_modal_5" className="modal modal-middle">
                         <div className="modal-box">
                             <form method="dialog">
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                {/* if there is a button in form, it will close the modal */}
-                                {/* <button className="btn">Close</button> */}
                             </form>
                             <h2 className="font-bold text-xl">Metal Type</h2>
                             <div className="p-4">
+
+                            <div className="form-control mb-3">
+                                    <label htmlFor="id" className="label">
+                                        Id
+                                    </label>
+                                    <input type="text" id="id" className="input input-primary focus:outline-none border-1 focus:ring-0 input-md" required placeholder="id" />
+                                </div>
+
                                 <div className="form-control mb-3">
                                     <label htmlFor="name" className="label">
                                         Name
@@ -119,8 +128,9 @@ function MetalType({ density}) {
 
                             </div>
                         </div>
-                    </dialog>
+                    </dialog> */}
                 </div>
+
             </div>
         </>
     )

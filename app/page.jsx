@@ -43,24 +43,24 @@ const HomeMenu = [
     name: 'T Bar',
     link: '/t-bar'
   },
-  {
-    id: 6,
-    icon: '/image/hexagon.png',
-    name: 'Beams',
-    link: '/beams'
-  },
-  {
-    id: 7,
-    icon: '/image/hexagon.png',
-    name: 'Channel',
-    link: '/channel'
-  },
-  {
-    id: 8,
-    icon: '/image/hexagon.png',
-    name: 'Angle',
-    link: '/angle'
-  },
+  // {
+  //   id: 6,
+  //   icon: '/image/hexagon.png',
+  //   name: 'Beams',
+  //   link: '/beams'
+  // },
+  // {
+  //   id: 7,
+  //   icon: '/image/hexagon.png',
+  //   name: 'Channel',
+  //   link: '/channel'
+  // },
+  // {
+  //   id: 8,
+  //   icon: '/image/hexagon.png',
+  //   name: 'Angle',
+  //   link: '/angle'
+  // },
   {
     id: 9,
     icon: '/image/hexagon.png',

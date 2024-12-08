@@ -116,7 +116,7 @@ function SquareBar() {
     return (
         <>
             <div>
-                <h3 className="text-3xl">Square Bar</h3>
+                <h3 className="text-3xl text-white">Square Bar</h3>
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
@@ -134,7 +134,7 @@ function SquareBar() {
                 </div>
             </div>
 
-            <div className="flex justify-end p-5 px-20">
+            <div className="flex justify-end text-white p-5 px-20">
                 <p>Density: {density} gr/cm<sup>3</sup></p>
             </div>
 

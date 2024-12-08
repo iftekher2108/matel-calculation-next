@@ -4,9 +4,8 @@ import Link from "next/link"
 import { memo } from "react"
 import { usePathname } from "next/navigation"
 function Panel({items}) {
-    const route = usePathname()
-
     
+    const route = usePathname()
 
     return (
         <div className="bg-primary items-center min-h-screen rounded-lg p-2">
@@ -14,11 +13,11 @@ function Panel({items}) {
                 {/* <Image src="logo" className="" height={50} width={50} alt="logo" /> */}
             </div>
             <div>
-                <ul className="menu rounded-lg bg-base-200 min-h-screen">
-                    <li className={'mb-2 ' + (route === '/' ? 'active' : '')}><Link className="text-white" href={'/'}>Home</Link></li>
+                <ul className="menu rounded-lg min-h-screen">
+                    <li className={'mb-2 focus:bg-primary text-white ' + (route === '/' ? 'active' : '')}><Link className="btn" href={'/'}>Home</Link></li>
                     {
                     items.map((item)=>(
-                     <li key={item.id} className={'mb-2 '+ (route === item.link ? 'active' :'')}><Link className="text-white" href={item.link}>{item.name}</Link></li>   
+                     <li key={item.id} className={'mb-2 text-white '+ (route === item.link ? 'active' :'')}><Link className="btn" href={item.link}>{item.name}</Link></li>   
                     ))
                     }
                 </ul>
