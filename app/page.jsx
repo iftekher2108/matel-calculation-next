@@ -98,8 +98,6 @@ const HomeMenu = [
           ))
         }
 
-
-
       </div>
     </>
   );

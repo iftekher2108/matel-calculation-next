@@ -96,29 +96,32 @@ export default function RootLayout({ children }) {
 
   const [items, setItems] = useState(HomeMenu);
 
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-     const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'mytheme'; 
-    }
-    else{
-      return 'mytheme';
-    }
+  const [theme, setTheme] = useState(
+  //   () => {
+  //   if (typeof window !== 'undefined') {
+  //    const savedTheme = localStorage.getItem('theme');
+  //   return savedTheme || 'mytheme'; 
+  //   }
+  //   else{
+  //     return 'mytheme';
+  //   }
     
-  });
+  // }
+  'mytheme'
+);
   
   function ThemeChange(e) {
     setTheme(e);
   }
   
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-     localStorage.setItem('theme', theme); 
-    }
-    else(
-      console.log('Local Storage Not Supported')
-    )
-  }, [theme]);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //    localStorage.setItem('theme', theme); 
+  //   }
+  //   else(
+  //     console.log('Local Storage Not Supported')
+  //   )
+  // }, [theme]);
 
   //  const DataContext = createContext()
 

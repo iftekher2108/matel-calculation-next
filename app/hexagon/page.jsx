@@ -7,7 +7,7 @@ function Hexagon() {
     const [density, setDensity] = useState(7.85)
 
     const handleData = (data) => {
-        setDensity(data);
+        setDensity(data)
     }
 
     // result type 
@@ -192,14 +192,7 @@ function Hexagon() {
                                     <span className="border border-1 col-span-2 border-accent focus:border-primary p-3 bg-base-100 rounded-e-lg focus:border-1">
                                         Kg
                                     </span>
-                                    {/* <select onChange={(e) => setWeightType(e.target.value)} 
-                                    className="select rounded-e-lg col-span-2 select-primary border-accent focus:ring-0 focus:outline-none select-md rounded-none">
 
-                                        <option value="">mm</option>
-                                        <option value="">cm</option>
-                                        <option value="">in</option>
-                                        <option value="">ft</option>
-                                    </select> */}
                                 </div>
                             </div>
                         }
@@ -225,7 +218,6 @@ function Hexagon() {
                             </div>
                         }
 
-
                         <div className="form-control">
                             <label htmlFor='pieces' className="label">
                                 Pieces:
@@ -246,13 +238,6 @@ function Hexagon() {
                         }
 
                     </div>
-
-                    {/* <div className="form-control">
-                        <label htmlFor="" className="label">
-                            Wide (A):
-                        </label>
-                        <input type="text" className="input input-primary input-md" placeholder="" />
-                    </div> */}
 
                     <div className="flex lg:justify-between justify-center my-3">
                         <button onClick={() => resetField()} className="btn btn-error text-white">Clear</button>
@@ -280,10 +265,6 @@ function Hexagon() {
 
                 </div>
 
-            </div>
-
-            <div>
-                {/* <Fallback /> */}
             </div>
 
         </>
