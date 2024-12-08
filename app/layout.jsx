@@ -97,8 +97,11 @@ export default function RootLayout({ children }) {
   const [items, setItems] = useState(HomeMenu);
 
   const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme || 'mytheme'; // Default to 'mytheme' if no saved theme
+    if (typeof window !== 'undefined') {
+     const savedTheme = localStorage.getItem('theme');
+    return savedTheme || 'mytheme'; 
+    }
+    return 'mytheme'; 
   });
   
   function ThemeChange(e) {
@@ -106,7 +109,10 @@ export default function RootLayout({ children }) {
   }
   
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    if (typeof window !== 'undefined') {
+     localStorage.setItem('theme', theme); 
+    }
+    
   }, [theme]);
 
   //  const DataContext = createContext()
