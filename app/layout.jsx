@@ -1,7 +1,7 @@
 // import localFont from "next/font/local";
 'use client'
 import "./globals.css";
-import "@fortawesome/fontawesome-free/css/all.min.css"
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Panel from "@/components/panel";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -81,13 +81,13 @@ export default function RootLayout({ children }) {
     //   link: '/angle'
     // },
     {
-      id: 9,
+      id: 6,
       icon: '/image/hexagon.png',
       name: 'Flat Bar',
       link: '/flat-bar'
     },
     {
-      id: 10,
+      id: 7,
       icon: '/image/hexagon.png',
       name: 'Sheet',
       link: '/sheet'
@@ -101,7 +101,10 @@ export default function RootLayout({ children }) {
      const savedTheme = localStorage.getItem('theme');
     return savedTheme || 'mytheme'; 
     }
-    return 'mytheme'; 
+    else{
+      return 'mytheme';
+    }
+    
   });
   
   function ThemeChange(e) {
@@ -112,7 +115,9 @@ export default function RootLayout({ children }) {
     if (typeof window !== 'undefined') {
      localStorage.setItem('theme', theme); 
     }
-    
+    else(
+      console.log('Local Storage Not Supported')
+    )
   }, [theme]);
 
   //  const DataContext = createContext()

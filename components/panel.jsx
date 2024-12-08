@@ -1,5 +1,4 @@
-
-import Image from "next/image"
+'use client'
 import Link from "next/link"
 import { memo } from "react"
 import { usePathname } from "next/navigation"

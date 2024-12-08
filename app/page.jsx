@@ -62,13 +62,13 @@ const HomeMenu = [
   //   link: '/angle'
   // },
   {
-    id: 9,
+    id: 6,
     icon: '/image/hexagon.png',
     name: 'Flat Bar',
     link: '/flat-bar'
   },
   {
-    id: 10,
+    id: 7,
     icon: '/image/hexagon.png',
     name: 'Sheet',
     link: '/sheet'
