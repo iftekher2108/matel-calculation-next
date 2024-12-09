@@ -5,10 +5,6 @@ import { memo, useState } from "react";
 function T_bar() {
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
-
     // result type 
     const [resultType, setResultType] = useState('length')
 
@@ -34,8 +30,8 @@ function T_bar() {
     const [weight, setWeight] = useState(0)
     // const [weightType, setWeightType] = useState()
 
-    const [pieces, setPieces] = useState(1); // default pieces
-    const [kgPrice, setKgPrice] = useState(1); // default price per kg
+    const [pieces, setPieces] = useState(1) // default pieces
+    const [kgPrice, setKgPrice] = useState(1) // default price per kg
 
 
     const resetField = () => {
@@ -68,12 +64,12 @@ function T_bar() {
         ) {
             alert('Please enter valid input values.');
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
         // Convert width to cm based on its type
@@ -81,13 +77,13 @@ function T_bar() {
             sideAType === 'mm' ? sideA / 10 :
                 sideAType === 'cm' ? sideA :
                     sideAType === 'in' ? sideA * 2.54 :
-                        sideAType === 'ft' ? sideA * 30.48 : 0;
+                        sideAType === 'ft' ? sideA * 30.48 : 0
 
         const sideBInCm =
             sideBType === 'mm' ? sideB / 10 :
                 sideBType === 'cm' ? sideB :
                     sideBType === 'in' ? sideB * 2.54 :
-                        sideBType === 'ft' ? sideB * 30.48 : 0;
+                        sideBType === 'ft' ? sideB * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -95,69 +91,52 @@ function T_bar() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
         const thicknessInCm =
             (thickType === 'mm' ? thickness / 10 :
                 thickType === 'cm' ? thickness :
                     thickType === 'in' ? thickness * 2.54 :
-                        thickType === 'ft' ? thickness * 30.48 : 0);
-
-
-        // Calculate side length of the hexagon
-        // const sideLength = widthInCm / Math.sqrt(3);
-        // // Calculate cross-sectional area of the hexagon
-        // const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
+                        thickType === 'ft' ? thickness * 30.48 : 0)
 
         if (resultType === 'length') {
 
             // Volume Calculation
-            const volumeHorizontal = sideAInCm * thicknessInCm; // cm³
-            const volumeVertical = thicknessInCm * (sideBInCm - thicknessInCm); // cm³
-            const totalVolume = (volumeHorizontal + volumeVertical) * lengthInCm; // cm³
+            const volumeHorizontal = sideAInCm * thicknessInCm // cm³
+            const volumeVertical = thicknessInCm * (sideBInCm - thicknessInCm) // cm³
+            const totalVolume = (volumeHorizontal + volumeVertical) * lengthInCm // cm³
 
             // Weight Calculation (in kg)
-            const weightKg = totalVolume * density / 1000; // g to kg
+            const weightKg = totalVolume * density / 1000 // g to kg
 
             // Total Weight and Price
-            const totalWeight = weightKg * pieces;
-            const totalPrice = totalWeight * kgPrice;
+            const totalWeight = weightKg * pieces
+            const totalPrice = totalWeight * kgPrice
 
 
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
 
         }
         else if (resultType === 'weight') {
 
-            // const outerArea = sideAInCm * sideBInCm; // Outer cross-sectional area
-            // const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm); // Inner hollow area
-            // // Cross-sectional area
-            // const crossSectionalArea = outerArea - innerArea;
-            // // Length of tube per kg
-            // const lengthPerKg = weight / (density * crossSectionalArea / 1000);
-
-            const densityInKgCm3 = density / 1000; // Convert g/cm³ to kg/cm³
+            const densityInKgCm3 = density / 1000 // Convert g/cm³ to kg/cm³
         
             // Calculate cross-sectional area (V)
-            const crossSectionalArea = (sideAInCm * thicknessInCm) + (sideBInCm * thicknessInCm) - (thicknessInCm * thicknessInCm);
+            const crossSectionalArea = (sideAInCm * thicknessInCm) + (sideBInCm * thicknessInCm) - (thicknessInCm * thicknessInCm)
         
             // Calculate length (L)
-            const lengthPerKg = weight / (crossSectionalArea * densityInKgCm3);
+            const lengthPerKg = weight / (crossSectionalArea * densityInKgCm3)
         
-
-
-
-
-            setResultInLength((lengthPerKg / 100).toFixed(2));
-            setTotalLength(((lengthPerKg * pieces) / 100).toFixed(2));
+            setResultInLength((lengthPerKg / 100).toFixed(2))
+            setTotalLength(((lengthPerKg * pieces) / 100).toFixed(2))
 
 
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
     }
 
@@ -168,7 +147,7 @@ function T_bar() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data)=>setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">

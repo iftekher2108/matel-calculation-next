@@ -8,7 +8,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        default: {
           primary: "#0A5EB0",
 
           secondary: "#0A97B0",

@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, memo } from "react"
 
-function MetalType({ density}) {
+function MetalType({density}) {
 
     // const types =[
     //     {
@@ -51,7 +51,7 @@ function MetalType({ density}) {
     //     }
     // ]
 
-    const [data, setData] = useState()
+    const [datas, setDatas] = useState()
 
 
     // model form fields
@@ -64,7 +64,7 @@ function MetalType({ density}) {
      fetch('/metaltype.json')
             .then((res) => res.json())
             .then((data) => {
-                setData(data)
+                setDatas(data)
                 // setLoading(false)
             })
     },[])
@@ -77,8 +77,8 @@ function MetalType({ density}) {
                     <div className="flex ">
                         <span className="me-2">Matel Type</span>
                         <select onChange={(e) => density(e.target.value)} className="select select-primary select-bordered focus:ring-0 focus:outline-none w-full max-w-xs">
-                            {(!data) ? <option>No data</option> : data.map((data) => (
-                                <option key={data.id} value={data.density} >{data.name}</option>
+                            {(!datas) ? <option>No data</option> : datas.map((data,index) => (
+                                <option key={index} value={data.density} >{data.name}</option>
                             ))}
                         </select>
                     </div>

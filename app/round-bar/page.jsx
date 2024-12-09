@@ -6,10 +6,6 @@ function RoundBar() {
 
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
-
     // result type 
     const [resultType, setResultType] = useState('length')
 
@@ -60,7 +56,7 @@ function RoundBar() {
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
-            alert('Please enter valid input values.');
+            alert('Please enter valid input values.')
             // Reset results if inputs are invalid
             setWeightInKg(0.00);
             setTotalWeight(0.00);
@@ -76,7 +72,7 @@ function RoundBar() {
             diaType === 'mm' ? diaMeter / 10 :
                 diaType === 'cm' ? diaMeter :
                     diaType === 'in' ? diaMeter * 2.54 :
-                        diaType === 'ft' ? diaMeter * 30.48 : 0;
+                        diaType === 'ft' ? diaMeter * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -84,7 +80,7 @@ function RoundBar() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
         // Calculate side length of the hexagon
         // const sideLength = widthInCm / Math.sqrt(3);
@@ -95,28 +91,28 @@ function RoundBar() {
         if (resultType === 'length') {
             // When calculating by length
 
-            const radius = DiaInCm / 2; // Radius in cm
-            const volume = Math.PI * Math.pow(radius, 2) * lengthInCm; // Volume in cm³
-            const weightKg = (volume * density) / 1000;
-            const totalWeight = weightKg * pieces; // Total weight for all pieces
-            const totalPrice = totalWeight * kgPrice; // Total price for all prices
+            const radius = DiaInCm / 2 // Radius in cm
+            const volume = Math.PI * Math.pow(radius, 2) * lengthInCm // Volume in cm³
+            const weightKg = (volume * density) / 1000
+            const totalWeight = weightKg * pieces // Total weight for all pieces
+            const totalPrice = totalWeight * kgPrice // Total price for all prices
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
         }
         else if (resultType === 'weight') {
 
-            const radius = DiaInCm / 2;
-            const volumePerPiece = (weight * 1000) / density; // Convert kg to g
-            const lengthPerPiece = volumePerPiece / (Math.PI * radius * radius);
-            const totalLength = lengthPerPiece * pieces;
+            const radius = DiaInCm / 2
+            const volumePerPiece = (weight * 1000) / density // Convert kg to g
+            const lengthPerPiece = volumePerPiece / (Math.PI * radius * radius)
+            const totalLength = lengthPerPiece * pieces
 
-            setResultInLength((lengthPerPiece / 100).toFixed(2));
-            setTotalLength((totalLength / 100).toFixed(2));
+            setResultInLength((lengthPerPiece / 100).toFixed(2))
+            setTotalLength((totalLength / 100).toFixed(2))
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
 
     }
@@ -129,7 +125,7 @@ function RoundBar() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data) => setDensity(data) } />
                 </div>
 
                 <div className="px-8 py-1">

@@ -5,10 +5,6 @@ import { memo, useState } from "react";
 function SquareTube() {
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
-
     // result type 
     const [resultType, setResultType] = useState('length')
 
@@ -34,8 +30,8 @@ function SquareTube() {
     const [weight, setWeight] = useState(0)
     // const [weightType, setWeightType] = useState()
 
-    const [pieces, setPieces] = useState(1); // default pieces
-    const [kgPrice, setKgPrice] = useState(1); // default price per kg
+    const [pieces, setPieces] = useState(1) // default pieces
+    const [kgPrice, setKgPrice] = useState(1) // default price per kg
 
 
     const resetField = () => {
@@ -66,14 +62,14 @@ function SquareTube() {
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
-            alert('Please enter valid input values.');
+            alert('Please enter valid input values.')
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
         // Convert width to cm based on its type
@@ -81,13 +77,13 @@ function SquareTube() {
             sideAType === 'mm' ? sideA / 10 :
                 sideAType === 'cm' ? sideA :
                     sideAType === 'in' ? sideA * 2.54 :
-                        sideAType === 'ft' ? sideA * 30.48 : 0;
+                        sideAType === 'ft' ? sideA * 30.48 : 0
 
         const sideBInCm =
             sideBType === 'mm' ? sideB / 10 :
                 sideBType === 'cm' ? sideB :
                     sideBType === 'in' ? sideB * 2.54 :
-                        sideBType === 'ft' ? sideB * 30.48 : 0;
+                        sideBType === 'ft' ? sideB * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -95,63 +91,57 @@ function SquareTube() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
         const thicknessInCm =
             (thickType === 'mm' ? thickness / 10 :
                 thickType === 'cm' ? thickness :
                     thickType === 'in' ? thickness * 2.54 :
-                        thickType === 'ft' ? thickness * 30.48 : 0);
-
-
-        // Calculate side length of the hexagon
-        // const sideLength = widthInCm / Math.sqrt(3);
-        // // Calculate cross-sectional area of the hexagon
-        // const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
+                        thickType === 'ft' ? thickness * 30.48 : 0)
 
         if (resultType === 'length') {
             // When calculating by length
 
-            const outerArea = sideAInCm * sideBInCm;
-            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm);
+            const outerArea = sideAInCm * sideBInCm
+            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm)
 
             // Volume in cm³
-            const volume = (outerArea - innerArea) * lengthInCm;
+            const volume = (outerArea - innerArea) * lengthInCm
 
             // Weight in kg
-            const weightKg = (density * volume) / 1000;
+            const weightKg = (density * volume) / 1000
 
             // Total Weight
-            const totalWeight = weightKg * pieces;
+            const totalWeight = weightKg * pieces
 
             // Total Price
-            const totalPrice = totalWeight * kgPrice;
+            const totalPrice = totalWeight * kgPrice
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
 
         }
         else if (resultType === 'weight') {
 
-            const outerArea = sideAInCm * sideBInCm; // Outer cross-sectional area
-            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm); // Inner hollow area
+            const outerArea = sideAInCm * sideBInCm // Outer cross-sectional area
+            const innerArea = (sideAInCm - 2 * thicknessInCm) * (sideBInCm - 2 * thicknessInCm) // Inner hollow area
           
             // Cross-sectional area
-            const crossSectionalArea = outerArea - innerArea;
+            const crossSectionalArea = outerArea - innerArea
           
             // Length of tube per kg
-            const lengthPerKg = weight / (density * crossSectionalArea / 1000);
+            const lengthPerKg = weight / (density * crossSectionalArea / 1000)
           
             
 
-            setResultInLength((lengthPerKg / 100).toFixed(2));
-            setTotalLength(((lengthPerKg * pieces) / 100).toFixed(2));
+            setResultInLength((lengthPerKg / 100).toFixed(2))
+            setTotalLength(((lengthPerKg * pieces) / 100).toFixed(2))
 
 
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
     }
 
@@ -162,7 +152,7 @@ function SquareTube() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data)=>setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">

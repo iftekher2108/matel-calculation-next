@@ -1,14 +1,11 @@
 'use client'
 import MetalType from "@/components/MetalType"
 // import Image from "next/image"
-import { memo, useState } from "react";
+import { memo, useState } from "react"
 function Hexagon() {
 
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data)
-    }
 
     // result type 
     const [resultType, setResultType] = useState('length')
@@ -28,8 +25,8 @@ function Hexagon() {
     // const [weightType, setWeightType] = useState()
 
 
-    const [pieces, setPieces] = useState(1); // default pieces
-    const [kgPrice, setKgPrice] = useState(1); // default price per kg
+    const [pieces, setPieces] = useState(1) // default pieces
+    const [kgPrice, setKgPrice] = useState(1) // default price per kg
 
 
     const resetField = () => {
@@ -42,7 +39,6 @@ function Hexagon() {
         setKgPrice(1)
 
     }
-
 
     // result 
     const [weightInKg, setWeightInKg] = useState(0.00)
@@ -62,12 +58,12 @@ function Hexagon() {
         ) {
             alert('Please enter valid input values.');
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
 
@@ -76,7 +72,7 @@ function Hexagon() {
             widthType === 'mm' ? width / 10 :
                 widthType === 'cm' ? width :
                     widthType === 'in' ? width * 2.54 :
-                        widthType === 'ft' ? width * 30.48 : 0;
+                        widthType === 'ft' ? width * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -84,40 +80,40 @@ function Hexagon() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
 
 
 
         // Calculate side length of the hexagon
-        const sideLength = widthInCm / Math.sqrt(3);
+        const sideLength = widthInCm / Math.sqrt(3)
         // Calculate cross-sectional area of the hexagon
-        const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
+        const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2) // Area in cm²
 
         if (resultType === 'length') {
             // When calculating by length
 
-            const area = hexagonArea * lengthInCm; // Area in cm²
-            const volume = area * density; // Volume in grams
-            const weightKg = volume / 1000; // Weight in kg
-            const totalWeight = weightKg * pieces; // Total weight for all pieces
-            const totalPrice = totalWeight * kgPrice; // Total price for all pieces
+            const area = hexagonArea * lengthInCm // Area in cm²
+            const volume = area * density // Volume in grams
+            const weightKg = volume / 1000 // Weight in kg
+            const totalWeight = weightKg * pieces // Total weight for all pieces
+            const totalPrice = totalWeight * kgPrice // Total price for all pieces
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
         }
         else if (resultType === 'weight') {
             // When calculating by weight
             const weightInGrams = weight * 1000; // Convert kg to grams
             const calculatedLength = weightInGrams / (density * hexagonArea) // Length in meters
-            const totalCalculatedLength = calculatedLength * pieces; // Total length in meters for all pieces
+            const totalCalculatedLength = calculatedLength * pieces // Total length in meters for all pieces
 
-            setResultInLength((calculatedLength / 100).toFixed(2));
-            setTotalLength((totalCalculatedLength / 100).toFixed(2));
+            setResultInLength((calculatedLength / 100).toFixed(2))
+            setTotalLength((totalCalculatedLength / 100).toFixed(2))
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
 
 
@@ -131,7 +127,7 @@ function Hexagon() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data)=> setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">

@@ -60,30 +60,61 @@ export default function RootLayout({ children }) {
 
   const [items, setItems] = useState(HomeMenu);
 
-  const [theme, setTheme] = useState(
-  //   () => {
-  //   if (typeof window !== 'undefined') {
-  //    const savedTheme = localStorage.getItem('theme');
-  //   return savedTheme; 
-  //   }
-  // }
-  'mytheme'
-);
-  
-  function ThemeChange(e) {
-    setTheme(e);
-  }
-  
+  // const [theme, setTheme] = useState(
+  //   //   () => {
+  //   //   if (typeof window !== 'undefined') {
+  //   //    const savedTheme = localStorage.getItem('theme');
+  //   //   return savedTheme; 
+  //   //   }
+  //   // }
+  //   'mytheme'
+  // );
+
   // useEffect(() => {
   //   if (window !== 'undefined') {
   //    localStorage.setItem('theme', theme); 
   //   }
-    
+
   // }, [theme]);
+
+  const themes = [
+    "default",
+    "dark",
+    "bumblebee",
+    "emerald",
+    "corporate",
+    "synthwave",
+    "retro",
+    "cyberpunk",
+    "valentine",
+    "halloween",
+    "garden",
+    "forest",
+    "aqua",
+    "lofi",
+    "pastel",
+    "fantasy",
+    "wireframe",
+    "black",
+    "luxury",
+    "dracula",
+    "cmyk",
+    "autumn",
+    "business",
+    "acid",
+    "lemonade",
+    "night",
+    "coffee",
+    "winter",
+    "dim",
+    "nord",
+    "sunset",
+
+  ]
 
 
   return (
-    <html lang="en" data-theme={theme || "mytheme"}>
+    <html lang="en" data-theme={"default"}>
       <body>
         <div className="min-h-screen bg-base-100">
 
@@ -102,312 +133,19 @@ export default function RootLayout({ children }) {
                 </svg>
               </div>
               <ul tabIndex={0} className="flex flex-col gap-1 dropdown-content bg-base-300 rounded-box z-[1] h-72 w-52 overflow-y-scroll p-2 shadow-2xl">
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Default"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="mytheme" />
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Dark"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="dark" />
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Bumblebee"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="bumblebee" />
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Emerald"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="emerald" />
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Corporate"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="corporate" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Synthwave"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="synthwave" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Retro"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="retro" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Cyberpunk"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="cyberpunk" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Valentine"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="valentine" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Halloween"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="halloween" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Garden"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="garden" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Forest"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="forest" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Aqua"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="aqua" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Fofi"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="lofi" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Pastel"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="pastel" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Fantasy"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="fantasy" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Wireframe"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="wireframe" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Black"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="black" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Luxury"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="luxury" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Dracula"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="dracula" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Cmyk"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="cmyk" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Autumn"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="autumn" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Business"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="business" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Acid"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="acid" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Lemonade"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="lemonade" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Night"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="night" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Coffee"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="coffee" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Winter"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="winter" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Dim"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="dim" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Nord"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="nord" />
-                </li>
-
-                <li>
-                  <input
-                    type="radio"
-                    name="theme-dropdown"
-                    className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    aria-label="Sunset"
-                    onChange={(e) => ThemeChange(e.target.value)}
-                    value="sunset" />
-                </li>
-
+                {
+                  themes.map((theme) => (
+                    <li key={theme}>
+                      <input
+                        type="radio"
+                        name="theme-dropdown"
+                        className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                        aria-label={theme}
+                        // onChange={(e) => ThemeChange(e.target.value)}
+                        value={theme} />
+                    </li>
+                  ))
+                }
 
               </ul>
             </div>
@@ -437,7 +175,7 @@ export default function RootLayout({ children }) {
                   {/* Sidebar content here */}
 
                   <div className="flex flex-col justify-center items-center p-2 gap-2">
-                    <Image src='/image/avatar.jpg' style={{ height:"140px", width:'140px' }} height={140} width={140} className="rounded-lg"  alt="Creator Avatar" />
+                    <Image src='/image/avatar.jpg' style={{ height: "140px", width: '140px' }} height={140} width={140} className="rounded-lg" alt="Creator Avatar" />
 
                     <div>
                       <span className="text-sm">Develop by -</span>

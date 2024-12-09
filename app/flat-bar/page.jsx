@@ -5,9 +5,6 @@ import { memo, useState } from "react";
 function FlatBar() {
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
 
     // result type 
     const [resultType, setResultType] = useState('length')
@@ -34,8 +31,8 @@ function FlatBar() {
     const [weight, setWeight] = useState(0)
     // const [weightType, setWeightType] = useState()
 
-    const [pieces, setPieces] = useState(1); // default pieces
-    const [kgPrice, setKgPrice] = useState(1); // default price per kg
+    const [pieces, setPieces] = useState(1) // default pieces
+    const [kgPrice, setKgPrice] = useState(1) // default price per kg
 
 
     const resetField = () => {
@@ -64,14 +61,14 @@ function FlatBar() {
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
-            alert('Please enter valid input values.');
+            alert('Please enter valid input values.')
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
         // Convert width to cm based on its type
@@ -79,13 +76,13 @@ function FlatBar() {
             sideAType === 'mm' ? sideA / 10 :
                 sideAType === 'cm' ? sideA :
                     sideAType === 'in' ? sideA * 2.54 :
-                        sideAType === 'ft' ? sideA * 30.48 : 0;
+                        sideAType === 'ft' ? sideA * 30.48 : 0
 
         const sideBInCm =
             sideBType === 'mm' ? sideB / 10 :
                 sideBType === 'cm' ? sideB :
                     sideBType === 'in' ? sideB * 2.54 :
-                        sideBType === 'ft' ? sideB * 30.48 : 0;
+                        sideBType === 'ft' ? sideB * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -93,40 +90,40 @@ function FlatBar() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
                         
 
         if (resultType === 'length') {
 
-            const weightKg = (density * sideAInCm * sideBInCm * lengthInCm) / 1000;
+            const weightKg = (density * sideAInCm * sideBInCm * lengthInCm) / 1000
             // Calculate total weight
-            const totalWeight = weightKg * pieces;
+            const totalWeight = weightKg * pieces
 
             // Calculate total price
-            const totalPrice = totalWeight * kgPrice;
+            const totalPrice = totalWeight * kgPrice
 
 
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
 
         }
         else if (resultType === 'weight') {
 
-            const mass = weight * 1000; // Convert kg to g
-            const materialDensity = density * 1000 * 1000; // Convert g/cm³ to kg/m³
-            const volume = mass / materialDensity;
-            const area = (sideAInCm * sideBInCm) / 10000; // Convert cm² to m²
-            const lengthPerKg = volume / area;
+            const mass = weight * 1000 // Convert kg to g
+            const materialDensity = density * 1000 * 1000 // Convert g/cm³ to kg/m³
+            const volume = mass / materialDensity
+            const area = (sideAInCm * sideBInCm) / 10000 // Convert cm² to m²
+            const lengthPerKg = volume / area
 
-            setResultInLength((lengthPerKg).toFixed(2));
-            setTotalLength(((lengthPerKg * pieces)).toFixed(2));
+            setResultInLength((lengthPerKg).toFixed(2))
+            setTotalLength(((lengthPerKg * pieces)).toFixed(2))
 
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
     }
 
@@ -137,7 +134,7 @@ function FlatBar() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data)=> setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">

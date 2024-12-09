@@ -5,9 +5,7 @@ import { memo, useState } from "react";
 function RoundTube() {
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
+
 
     // result type 
     const [resultType, setResultType] = useState('length')
@@ -28,8 +26,8 @@ function RoundTube() {
     const [weight, setWeight] = useState(0)
     // const [weightType, setWeightType] = useState()
 
-    const [pieces, setPieces] = useState(1); // default pieces
-    const [kgPrice, setKgPrice] = useState(1); // default price per kg
+    const [pieces, setPieces] = useState(1) // default pieces
+    const [kgPrice, setKgPrice] = useState(1) // default price per kg
 
 
     const resetField = () => {
@@ -58,14 +56,14 @@ function RoundTube() {
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
-            alert('Please enter valid input values.');
+            alert('Please enter valid input values.')
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
         // Convert width to cm based on its type
@@ -73,7 +71,7 @@ function RoundTube() {
             diaType === 'mm' ? diaMeter / 10 :
                 diaType === 'cm' ? diaMeter :
                     diaType === 'in' ? diaMeter * 2.54 :
-                        diaType === 'ft' ? diaMeter * 30.48 : 0;
+                        diaType === 'ft' ? diaMeter * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -81,13 +79,13 @@ function RoundTube() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
         const thicknessInCm =
             (thickType === 'mm' ? thickness / 10 :
                 thickType === 'cm' ? thickness :
                     thickType === 'in' ? thickness * 2.54 :
-                        thickType === 'ft' ? thickness * 30.48 : 0);
+                        thickType === 'ft' ? thickness * 30.48 : 0)
 
         // Calculate side length of the hexagon
         // const sideLength = widthInCm / Math.sqrt(3);
@@ -97,29 +95,29 @@ function RoundTube() {
         if (resultType === 'length') {
             // When calculating by length
 
-            const radius = DiaInCm / 2; // Radius in cm
-            const innerRadius = radius - thicknessInCm; // Volume in cm³
-            const volume = Math.PI * lengthInCm * (radius ** 2 - innerRadius ** 2);
-            const weightKg = (volume * density) / 1000; // Convert to kg
-            const totalWeight = weightKg * pieces; // Total weight for all pieces
-            const totalPrice = totalWeight * kgPrice; // Total price for all prices
+            const radius = DiaInCm / 2 // Radius in cm
+            const innerRadius = radius - thicknessInCm // Volume in cm³
+            const volume = Math.PI * lengthInCm * (radius ** 2 - innerRadius ** 2)
+            const weightKg = (volume * density) / 1000 // Convert to kg
+            const totalWeight = weightKg * pieces // Total weight for all pieces
+            const totalPrice = totalWeight * kgPrice // Total price for all prices
 
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
         }
         else if (resultType === 'weight') {
 
-            const radius = DiaInCm / 2;
-            const innerRadius = radius - thicknessInCm;
+            const radius = DiaInCm / 2
+            const innerRadius = radius - thicknessInCm
             const volume = (weight * 1000) / density; // Convert weight to volume
-            const InLength = volume / (Math.PI * (radius ** 2 - innerRadius ** 2));
-            const totalLength = InLength * pieces;
-            setResultInLength((InLength / 100).toFixed(2));
-            setTotalLength((totalLength / 100).toFixed(2));
+            const InLength = volume / (Math.PI * (radius ** 2 - innerRadius ** 2))
+            const totalLength = InLength * pieces
+            setResultInLength((InLength / 100).toFixed(2))
+            setTotalLength((totalLength / 100).toFixed(2))
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
     }
 
@@ -130,7 +128,7 @@ function RoundTube() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data) => setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">

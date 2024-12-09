@@ -6,10 +6,6 @@ import { memo, useState } from "react";
 function SquareBar() {
     const [density, setDensity] = useState(7.85)
 
-    const handleData = (data) => {
-        setDensity(data);
-    }
-
     // result type 
     const [resultType, setResultType] = useState('length')
 
@@ -54,14 +50,14 @@ function SquareBar() {
             (resultType === 'length' && (!length || !kgPrice || length <= 0 || kgPrice <= 0)) ||
             (resultType === 'weight' && (!weight || weight <= 0))
         ) {
-            alert('Please enter valid input values.');
+            alert('Please enter valid input values.')
             // Reset results if inputs are invalid
-            setWeightInKg(0.00);
-            setTotalWeight(0.00);
-            setTotalInPrice(0.00);
-            setResultInLength(0.00);
-            setTotalLength(0.00);
-            return;
+            setWeightInKg(0.00)
+            setTotalWeight(0.00)
+            setTotalInPrice(0.00)
+            setResultInLength(0.00)
+            setTotalLength(0.00)
+            return
         }
 
         // Convert width to cm based on its type
@@ -69,7 +65,7 @@ function SquareBar() {
             sideType === 'mm' ? side / 10 :
                 sideType === 'cm' ? side :
                     sideType === 'in' ? side * 2.54 :
-                        sideType === 'ft' ? side * 30.48 : 0;
+                        sideType === 'ft' ? side * 30.48 : 0
 
         // Convert length to cm based on its type (only if resultType is 'length')
         const lengthInCm =
@@ -77,39 +73,33 @@ function SquareBar() {
             (lengthType === 'mm' ? length / 10 :
                 lengthType === 'cm' ? length :
                     lengthType === 'in' ? length * 2.54 :
-                        lengthType === 'ft' ? length * 30.48 : 0);
-
-
-        // Calculate side length of the hexagon
-        // const sideLength = widthInCm / Math.sqrt(3);
-        // // Calculate cross-sectional area of the hexagon
-        // const hexagonArea = (3 * Math.sqrt(3) / 2) * Math.pow(sideLength, 2); // Area in cm²
+                        lengthType === 'ft' ? length * 30.48 : 0)
 
         if (resultType === 'length') {
             // When calculating by length
 
             // Calculate the weight of one piece
-            const weightKg = (sideInCm ** 2 * lengthInCm * density) / 1000;
-            const totalWeight = weightKg * pieces; // Total weight for all pieces
-            const totalPrice = totalWeight * kgPrice; // Total price for all prices
-            setWeightInKg(weightKg.toFixed(2));
-            setTotalWeight(totalWeight.toFixed(2));
-            setTotalInPrice(totalPrice.toFixed(2));
+            const weightKg = (sideInCm ** 2 * lengthInCm * density) / 1000
+            const totalWeight = weightKg * pieces // Total weight for all pieces
+            const totalPrice = totalWeight * kgPrice // Total price for all prices
+            setWeightInKg(weightKg.toFixed(2))
+            setTotalWeight(totalWeight.toFixed(2))
+            setTotalInPrice(totalPrice.toFixed(2))
         }
         else if (resultType === 'weight') {
 
             // Calculate length in cm
-            const length = (weight * 1000) / (side ** 2 * density);
+            const length = (weight * 1000) / (side ** 2 * density)
             // Convert length to meters
-            const lengthInMeters = length / 100;
+            const lengthInMeters = length / 100
             // Total length in meters
-            const totalLength = lengthInMeters * pieces;
-            setResultInLength((lengthInMeters).toFixed(2));
-            setTotalLength((totalLength).toFixed(2));
+            const totalLength = lengthInMeters * pieces
+            setResultInLength((lengthInMeters).toFixed(2))
+            setTotalLength((totalLength).toFixed(2))
 
         }
         else {
-            alert('Please select a valid calculation type (length or weight).');
+            alert('Please select a valid calculation type (length or weight).')
         }
     }
 
@@ -120,7 +110,7 @@ function SquareBar() {
             </div>
             <div className="flex flex-col justify-end items-end">
                 <div>
-                    <MetalType density={handleData} />
+                    <MetalType density={(data)=> setDensity(data)} />
                 </div>
 
                 <div className="px-8 py-1">
