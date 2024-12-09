@@ -87,7 +87,7 @@ function Hexagon() {
                         lengthType === 'ft' ? length * 30.48 : 0);
 
 
-                        
+
 
         // Calculate side length of the hexagon
         const sideLength = widthInCm / Math.sqrt(3);
@@ -114,7 +114,7 @@ function Hexagon() {
             const totalCalculatedLength = calculatedLength * pieces; // Total length in meters for all pieces
 
             setResultInLength((calculatedLength / 100).toFixed(2));
-            setTotalLength((totalCalculatedLength/ 100).toFixed(2));
+            setTotalLength((totalCalculatedLength / 100).toFixed(2));
         }
         else {
             alert('Please select a valid calculation type (length or weight).');
@@ -136,8 +136,7 @@ function Hexagon() {
 
                 <div className="px-8 py-1">
                     <div className="form-control">
-                        <label htmlFor="" className="label"></label>
-                        <select onChange={(e) => setResultType(e.target.value)} required className="select select-primary focus:ring-0 focus:outline-none select-md">
+                        <select onChange={(e) => setResultType(e.target.value)} className="select select-primary focus:ring-0 focus:outline-none select-md">
                             <option value="length">By Length</option>
                             <option value="weight">By Weight</option>
                         </select>
@@ -162,13 +161,13 @@ function Hexagon() {
                                 Width (A):
                             </label>
                             <div className="grid grid-cols-8">
-                                <input onChange={(e) => setWidth(parseFloat(e.target.value) || 0)} value={width} type='number' required id='width'
+                                <input onChange={(e) => setWidth(parseFloat(e.target.value) || 0)} value={width} type='number' id='width'
                                     className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
                                     placeholder='0.00' />
 
                                 <select
                                     className="select rounded-e-lg col-span-2 select-primary 
-                                 border-accent focus:ring-0 focus:outline-none select-md rounded-none" required
+                                 border-accent focus:ring-0 focus:outline-none select-md rounded-none"
                                     onChange={(e) => setWidthType(e.target.value)}
                                 >
                                     <option value="mm">mm</option>
@@ -205,10 +204,10 @@ function Hexagon() {
                                     Length:
                                 </label>
                                 <div className="grid grid-cols-8">
-                                    <input onChange={(e) => setLength(parseFloat(e.target.value) || 0)} value={length} required type='number' id='length' className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
+                                    <input onChange={(e) => setLength(parseFloat(e.target.value) || 0)} value={length} type='number' id='length' className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
                                         placeholder='0.00' />
                                     <select onChange={(e) => setLengthType(e.target.value)}
-                                        className="select rounded-e-lg col-span-2 select-primary border-accent focus:ring-0 focus:outline-none select-md rounded-none" required >
+                                        className="select rounded-e-lg col-span-2 select-primary border-accent focus:ring-0 focus:outline-none select-md rounded-none">
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="in">in</option>
@@ -222,7 +221,7 @@ function Hexagon() {
                             <label htmlFor='pieces' className="label">
                                 Pieces:
                             </label>
-                            <input onChange={(e) => setPieces(parseInt(e.target.value) || 0)} value={pieces} required type='number' id='pieces' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
+                            <input onChange={(e) => setPieces(parseInt(e.target.value) || 0)} value={pieces} type='number' id='pieces' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                 placeholder='0' />
                         </div>
 
@@ -230,9 +229,9 @@ function Hexagon() {
 
                             <div className="form-control">
                                 <label htmlFor='prices' className="label">
-                                   Kg Price:
+                                    Kg Price:
                                 </label>
-                                <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} value={kgPrice} required type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
+                                <input onChange={(e) => setKgPrice(parseFloat(e.target.value) || 0)} value={kgPrice} type='number' id='price' className="input input-primary border-accent focus:ring-0 focus:outline-none input-md"
                                     placeholder='0' />
                             </div>
                         }

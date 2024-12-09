@@ -173,7 +173,6 @@ function T_bar() {
 
                 <div className="px-8 py-1">
                     <div className="form-control">
-                        <label htmlFor="" className="label"></label>
                         <select onChange={(e) => setResultType(e.target.value)} required className="select select-primary focus:ring-0 focus:outline-none select-md">
                             <option value="length">By Length</option>
                             <option value="weight">By Weight</option>

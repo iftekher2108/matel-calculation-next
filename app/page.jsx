@@ -8,67 +8,49 @@ function Home() {
 
 const HomeMenu = [
   {
-    id: 0,
+    id: 1,
     icon: '/image/hexagon.png',
     name: 'Hexagon',
     link: '/hexagon'
   },
   {
-    id: 1,
+    id: 2,
     icon: '/image/hexagon.png',
     name: 'Round Bar',
     link: '/round-bar'
   },
   {
-    id: 2,
+    id: 3,
     icon: '/image/hexagon.png',
     name: 'Round Tube',
     link: '/round-tube'
   },
   {
-    id: 3,
+    id: 4,
     icon: '/image/hexagon.png',
     name: 'Square Bar',
     link: '/square-bar'
   },
   {
-    id: 4,
+    id: 5,
     icon: '/image/hexagon.png',
     name: 'Square Tube',
     link: '/square-tube'
   },
   {
-    id: 5,
+    id: 6,
     icon: '/image/hexagon.png',
     name: 'T Bar',
     link: '/t-bar'
   },
-  // {
-  //   id: 6,
-  //   icon: '/image/hexagon.png',
-  //   name: 'Beams',
-  //   link: '/beams'
-  // },
-  // {
-  //   id: 7,
-  //   icon: '/image/hexagon.png',
-  //   name: 'Channel',
-  //   link: '/channel'
-  // },
-  // {
-  //   id: 8,
-  //   icon: '/image/hexagon.png',
-  //   name: 'Angle',
-  //   link: '/angle'
-  // },
   {
-    id: 6,
+    id: 7,
     icon: '/image/hexagon.png',
     name: 'Flat Bar',
     link: '/flat-bar'
   },
   {
-    id: 7,
+    id: 8,
     icon: '/image/hexagon.png',
     name: 'Sheet',
     link: '/sheet'
@@ -90,7 +72,7 @@ const HomeMenu = [
               <Link href={`${item.link}`} className="">
                 <div className="card-title justify-center mb-4" >
                   <i className={'text-xl fa-lg' + ' ' + item.icon}></i>
-                  <Image src={item.icon} height={100} width={100} alt={item.name} />
+                  <Image src={item.icon} className="rounded-md" height={100} width={100} alt={item.name} />
                 </div>
                 <p className="text-lg text-center font-semibold">{item.name}</p>
               </Link>

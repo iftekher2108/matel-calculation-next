@@ -5,7 +5,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Panel from "@/components/panel";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-// import Image from "next/image";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -27,67 +26,49 @@ export default function RootLayout({ children }) {
 
   const HomeMenu = [
     {
-      id: 0,
+      id: 1,
       icon: '/image/hexagon.png',
       name: 'Hexagon',
       link: '/hexagon'
     },
     {
-      id: 1,
+      id: 2,
       icon: '/image/hexagon.png',
       name: 'Round Bar',
       link: '/round-bar'
     },
     {
-      id: 2,
+      id: 3,
       icon: '/image/hexagon.png',
       name: 'Round Tube',
       link: '/round-tube'
     },
     {
-      id: 3,
+      id: 4,
       icon: '/image/hexagon.png',
       name: 'Square Bar',
       link: '/square-bar'
     },
     {
-      id: 4,
+      id: 5,
       icon: '/image/hexagon.png',
       name: 'Square Tube',
       link: '/square-tube'
     },
     {
-      id: 5,
+      id: 6,
       icon: '/image/hexagon.png',
       name: 'T Bar',
       link: '/t-bar'
     },
-    // {
-    //   id: 6,
-    //   icon: '/image/hexagon.png',
-    //   name: 'Beams',
-    //   link: '/beams'
-    // },
-    // {
-    //   id: 7,
-    //   icon: '/image/hexagon.png',
-    //   name: 'Channel',
-    //   link: '/channel'
-    // },
-    // {
-    //   id: 8,
-    //   icon: '/image/hexagon.png',
-    //   name: 'Angle',
-    //   link: '/angle'
-    // },
     {
-      id: 6,
+      id: 7,
       icon: '/image/hexagon.png',
       name: 'Flat Bar',
       link: '/flat-bar'
     },
     {
-      id: 7,
+      id: 8,
       icon: '/image/hexagon.png',
       name: 'Sheet',
       link: '/sheet'
@@ -480,7 +461,7 @@ export default function RootLayout({ children }) {
                   {/* Sidebar content here */}
 
                   <div className="flex flex-col justify-center items-center p-2 gap-2">
-                    <Image src={'/image/avatar.jpg'} className="rounded-lg" height={140} width={140} alt="Creator Avatar" />
+                    <Image src='/image/avatar.jpg' style={{ height:"140px", width:'140px' }} height={140} width={140} className="rounded-lg"  alt="Creator Avatar" />
 
                     <div>
                       <span className="text-sm">Develop by -</span>
