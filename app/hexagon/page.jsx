@@ -3,9 +3,7 @@ import MetalType from "@/components/MetalType"
 // import Image from "next/image"
 import { memo, useState } from "react"
 function Hexagon() {
-
     const [density, setDensity] = useState(7.85)
-
 
     // result type 
     const [resultType, setResultType] = useState('length')
@@ -83,8 +81,6 @@ function Hexagon() {
                         lengthType === 'ft' ? length * 30.48 : 0)
 
 
-
-
         // Calculate side length of the hexagon
         const sideLength = widthInCm / Math.sqrt(3)
         // Calculate cross-sectional area of the hexagon
@@ -105,7 +101,7 @@ function Hexagon() {
         }
         else if (resultType === 'weight') {
             // When calculating by weight
-            const weightInGrams = weight * 1000; // Convert kg to grams
+            const weightInGrams = weight * 1000 // Convert kg to grams
             const calculatedLength = weightInGrams / (density * hexagonArea) // Length in meters
             const totalCalculatedLength = calculatedLength * pieces // Total length in meters for all pieces
 

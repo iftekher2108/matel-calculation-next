@@ -114,7 +114,7 @@ export default function RootLayout({ children }) {
 
 
   return (
-    <html lang="en" data-theme={"default"}>
+    <html lang="en" data-theme="default">
       <body>
         <div className="min-h-screen bg-base-100">
 
