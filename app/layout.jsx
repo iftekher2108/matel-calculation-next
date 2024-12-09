@@ -60,22 +60,14 @@ export default function RootLayout({ children }) {
 
   const [items, setItems] = useState(HomeMenu);
 
-  // const [theme, setTheme] = useState(
-  //   //   () => {
-  //   //   if (typeof window !== 'undefined') {
-  //   //    const savedTheme = localStorage.getItem('theme');
-  //   //   return savedTheme; 
-  //   //   }
-  //   // }
-  //   'mytheme'
-  // );
+  const [theme, setTheme] = useState( localStorage.getItem('theme') || "default" )
 
-  // useEffect(() => {
-  //   if (window !== 'undefined') {
-  //    localStorage.setItem('theme', theme); 
-  //   }
+  useEffect(() => {
+    // if (window !== 'undefined') {
+     localStorage.setItem('theme', theme); 
+    // }
 
-  // }, [theme]);
+  }, [theme]);
 
   const themes = [
     "default",
@@ -114,7 +106,7 @@ export default function RootLayout({ children }) {
 
 
   return (
-    <html lang="en" data-theme="default">
+    <html lang="en" data-theme={theme}>
       <body>
         <div className="min-h-screen bg-base-100">
 
@@ -141,7 +133,7 @@ export default function RootLayout({ children }) {
                         name="theme-dropdown"
                         className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
                         aria-label={theme}
-                        // onChange={(e) => ThemeChange(e.target.value)}
+                        onChange={(e) => setTheme(e.target.value)}
                         value={theme} />
                     </li>
                   ))
