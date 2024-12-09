@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
 
   const [items, setItems] = useState(HomeMenu);
 
-  const [theme, setTheme] = useState( localStorage.getItem('theme') || "default" )
+  const [theme, setTheme] = useState( localStorage.getItem('theme') ?? "default" )
 
   useEffect(() => {
     // if (window !== 'undefined') {
