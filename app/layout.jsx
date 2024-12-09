@@ -3,6 +3,7 @@ import "./globals.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Panel from "@/components/panel";
 import Image from "next/image";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useEffect, useState } from "react";
 
 export default function RootLayout({ children }) {
@@ -211,6 +212,7 @@ export default function RootLayout({ children }) {
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
                   {children}
+                  <SpeedInsights/>
                 </div>
               </div>
             </div>
