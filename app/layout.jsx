@@ -60,14 +60,14 @@ export default function RootLayout({ children }) {
 
   const [items, setItems] = useState(HomeMenu);
 
-  const [theme, setTheme] = useState( localStorage.getItem('theme') ?? "default" )
+  // const [theme, setTheme] = useState( localStorage.getItem('theme') ?? "default" )
 
-  useEffect(() => {
-    // if (window !== 'undefined') {
-     localStorage.setItem('theme', theme); 
-    // }
+  // useEffect(() => {
+  //   // if (window !== 'undefined') {
+  //    localStorage.setItem('theme', theme); 
+  //   // }
 
-  }, [theme]);
+  // }, [theme]);
 
   const themes = [
     "default",
@@ -106,7 +106,7 @@ export default function RootLayout({ children }) {
 
 
   return (
-    <html lang="en" data-theme={theme}>
+    <html lang="en" data-theme={'default'}>
       <body>
         <div className="min-h-screen bg-base-100">
 
