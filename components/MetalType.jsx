@@ -61,13 +61,13 @@ function MetalType({ density}) {
 
  
     useEffect(() => {
-       fetch('/metaltype.json')
+     fetch('/metaltype.json')
             .then((res) => res.json())
             .then((data) => {
                 setData(data)
                 // setLoading(false)
             })
-    }, [])
+    },[])
 
     return (
         <>
