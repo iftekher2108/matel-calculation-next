@@ -107,8 +107,8 @@ export default function RootLayout({ children }) {
   //  const DataContext = createContext()
 
   return (
-    <html lang="en" data-theme={`${theme}`}>
-      <body>
+    <html lang="en">
+      <body data-theme={`${theme}`}>
         <div className="min-h-screen bg-base-100">
 
           <div className="fixed top-4 start-4 z-50">
@@ -504,9 +504,7 @@ export default function RootLayout({ children }) {
               </div>
               <div className="col-span-4">
                 <div className="bg-neutral p-4 rounded-lg min-h-screen">
-                  {/* <DataContext.Provider value={items}> */}
                   {children}
-                  {/* </DataContext.Provider>  */}
                 </div>
               </div>
             </div>

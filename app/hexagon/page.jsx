@@ -187,7 +187,7 @@ function Hexagon() {
                                 <div className="grid grid-cols-8">
                                     <input onChange={(e) => setWeight(parseFloat(e.target.value) || 0)} value={weight} type='number' id='weight'
                                         className="input col-span-6 input-primary border-accent focus:ring-0 focus:outline-none rounded-s-lg rounded-none input-md"
-                                        placeholder='0.00' required />
+                                        placeholder='0.00' />
                                     <span className="border border-1 col-span-2 border-accent focus:border-primary p-3 bg-base-100 rounded-e-lg focus:border-1">
                                         Kg
                                     </span>
