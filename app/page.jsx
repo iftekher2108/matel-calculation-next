@@ -9,49 +9,49 @@ function Home() {
 const HomeMenu = [
   {
     id: 1,
-    icon: '/image/hexagon.png',
+    icon: '/image/hexagon.jpeg',
     name: 'Hexagon',
     link: '/hexagon'
   },
   {
     id: 2,
-    icon: '/image/hexagon.png',
+    icon: '/image/round-bar.jpeg',
     name: 'Round Bar',
     link: '/round-bar'
   },
   {
     id: 3,
-    icon: '/image/hexagon.png',
+    icon: '/image/round-tube.jpeg',
     name: 'Round Tube',
     link: '/round-tube'
   },
   {
     id: 4,
-    icon: '/image/hexagon.png',
+    icon: '/image/square-bar.jpeg',
     name: 'Square Bar',
     link: '/square-bar'
   },
   {
     id: 5,
-    icon: '/image/hexagon.png',
+    icon: '/image/square-tube.jpeg',
     name: 'Square Tube',
     link: '/square-tube'
   },
   {
     id: 6,
-    icon: '/image/hexagon.png',
+    icon: '/image/t-bar.jpeg',
     name: 'T Bar',
     link: '/t-bar'
   },
   {
     id: 7,
-    icon: '/image/hexagon.png',
+    icon: '/image/flat-bar.jpeg',
     name: 'Flat Bar',
     link: '/flat-bar'
   },
   {
     id: 8,
-    icon: '/image/hexagon.png',
+    icon: '/image/sheet.jpeg',
     name: 'Sheet',
     link: '/sheet'
   }

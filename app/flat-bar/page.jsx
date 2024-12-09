@@ -1,6 +1,6 @@
 'use client'
 import MetalType from "@/components/MetalType"
-// import Image from "next/image"
+import Image from "next/image"
 import { memo, useState } from "react";
 function FlatBar() {
     const [density, setDensity] = useState(7.85)
@@ -92,7 +92,7 @@ function FlatBar() {
                     lengthType === 'in' ? length * 2.54 :
                         lengthType === 'ft' ? length * 30.48 : 0)
 
-                        
+
 
         if (resultType === 'length') {
 
@@ -132,14 +132,17 @@ function FlatBar() {
             <div>
                 <h3 className="text-3xl text-white">Flat Bar</h3>
             </div>
-            <div className="flex flex-col justify-end items-end">
-                <div>
-                    <MetalType density={(data)=> setDensity(data)} />
+            <div className="flex justify-between items-center">
+
+                <div className="card m-3">
+                    <Image src={'/image/flat-bar.jpeg'} height={150} width={150} alt="Flat Bar" />
                 </div>
 
                 <div className="px-8 py-1">
+                    <div className="mb-2">
+                        <MetalType density={(data) => setDensity(data)} />
+                    </div>
                     <div className="form-control">
-                        <label htmlFor="" className="label"></label>
                         <select onChange={(e) => setResultType(e.target.value)} required className="select select-primary focus:ring-0 focus:outline-none select-md">
                             <option value="length">By Length</option>
                             <option value="weight">By Weight</option>
@@ -155,9 +158,7 @@ function FlatBar() {
             <div className="lg:grid grid-cols-2 gap-3">
 
                 <div>
-                    <div className="card">
-                        {/* <Image src={} height={100} width={100} alt="Hexagon" /> */}
-                    </div>
+
                     <div>
 
                         <div className="form-control">
