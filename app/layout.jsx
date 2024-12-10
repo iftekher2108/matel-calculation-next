@@ -134,7 +134,7 @@ export default function RootLayout({ children }) {
                         name="theme-dropdown"
                         className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
                         aria-label={theme}
-                        onChange={(e) => setTheme(e.target.value)}
+                        // onChange={(e) => setTheme(e.target.value)}
                         value={theme} />
                     </li>
                   ))
